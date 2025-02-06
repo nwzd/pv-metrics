@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  spark:
+    image: jupyter/pyspark-notebook
+    container_name: spark-notebook
+    ports:
+      - "8888:8888"  # Jupyter Notebook port
+      - "4040:4040"  # Spark UI port
+    volumes:
+      - ./data:/home/jovyan/data  # Mount your local data directory
+      - ./notebooks:/home/jovyan/notebooks  # Mount your local notebooks directory
+    environment:
+      - JUPYTER_TOKEN=t0k3n  # Set a password for Jupyter Notebook
+    command: start-notebook.sh --NotebookApp.token='t0k3n'
